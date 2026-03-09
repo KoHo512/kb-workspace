@@ -1,0 +1,24 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  /* flex-direction: column; */
+  flex-direction: column-reverse;
+  /* flex-direction: row; */
+  /* flex-direction: row-reverse; */
+  justify-content: center;
+}
+div {
+  width: 100px;
+  height: 100px;
+  background-color: tomato;
+}
+#first {
+  background-color: blueviolet;
+}
+#second {
+  background-color: seagreen;
+}

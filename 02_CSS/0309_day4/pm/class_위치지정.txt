@@ -1,0 +1,8 @@
+위치 지정 : static, fixed, relative, absolute
+
+자식이 부모가 될 수 있음
+
+position 속성 : 웹페이지의 요소를 어떻게 배치할지 정함
+    - static : '변화나 움직임이 없는', '기본이 되는'
+    - fixed : '고정된' - 웹브라우저에 고정 (상단 메뉴바, 네비게이션 바)
+    - relative : '상대적인' - 자기 자신을 기준으로 top, left, right, bottom에 간격
