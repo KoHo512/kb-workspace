@@ -1,0 +1,48 @@
+1. 변수(Variable)
+변수 : 변하는 값, 데이터를 담는 공간(메모리)
+
+변수 선언
+    var a;
+    - 변수 선언 후 값을 할당하지 않으면 기본적으로 초기값은 undefined
+
+    var b;
+    b = 10;
+
+변수의 타입 확인 : typeof
+
+
+2. 문자열(String) : ex01.html
+    var a = "hello";
+    a = 'hi';
+
+- 데이터 타입을 작성하지 않고 var로 선언
+=> JS는 코드를 실행하는 시점에 변수의 데이터 타입이 결정됨
+
+
+3. 조건문(Condition) : ex02.html, ex03.html
+
+
+4. Object : ex04.html
+    - JS는 객체 기반 언어
+    - 객체는 키(key) - 값(value) 형태로 이루어짐
+
+    let obj = {};
+    let obj = {객체 내용};
+    - obj 변수에 객체를 새로 할당 => 빈 괄호로도 객체 할당 가능 (빈 객체)
+
+    - 객체를 생성하고 속성 추가
+
+
+5. Map 객체와 Set 객체 : ex05.html, ex06.html
+    Set 객체 : 순서가 없음, 중복을 허용하지 않음
+
+6. 데이터 타입(Data Type) : ex07.html
+
+7. 배열(Array) : ex08.html
+    let array1 = [];
+
+8. 반복문(Loop) : ex09.html
+    내부반복자
+    - forEach() 반복문
+    - for in 반복문
+    - for of 반복문

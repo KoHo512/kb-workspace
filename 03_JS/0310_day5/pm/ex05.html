@@ -1,0 +1,55 @@
+<script>
+  // Map 객체 생성
+  const map = new Map();
+
+  // Map 값 추가
+  map.set('key1', 'value1');
+  map.set('key2', 'value2');
+
+  // 값 확인
+  console.log(map);
+
+  // map1 이름의 Map 객체 생성하며
+  // map2의 값을 [key1:value1, key2:value2] 형태로 엔트리 구성
+  const map1 = new Map([
+    ['key1', 'value1'],
+    ['key2', 'value2'],
+  ]);
+  console.log(map1);
+
+  // Map 값 삭제 => delete
+  map1.delete('key1');
+  console.log(map1);
+
+  // Map의 모든 엔트리셋 삭제
+  map1.clear();
+  console.log(map1);
+
+  // 전체 엔트리셋 반복
+  console.log('**map의 엔트리셋**');
+  map.forEach((key, value) => {
+    console.log(key + ' : ' + value);
+  });
+
+  // key 값 가져오기
+  console.log('**map의 key 값**');
+  for (let key of map.keys()) {
+    console.log('key : ' + key);
+  }
+
+  // value 값 가져오기
+  console.log('**map의 value 값**');
+  for (const value of map.values()) {
+    console.log(value);
+  }
+
+  // 함수를 통해 전체 엔트리셋 - forEach가 성능이 더 좋음
+  for (let [key, value] of map.entries()) {
+    console.log(key + ' : ' + value);
+  }
+
+  // 특정 값
+  console.log(map.get('key1'));
+  console.log(map.has('key1'));
+  console.log(map.size);
+</script>

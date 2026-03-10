@@ -1,0 +1,16 @@
+<input type="text" value="100" />
+
+<script>
+  var divElement = document.querySelector('input').value;
+  console.log(divElement); // 100
+  console.log(typeof divElement); // string
+
+  var a = 10;
+  var b = '20';
+  console.log(typeof a); // number
+  console.log(typeof b); // string
+  console.log(b.length); // 2
+  b = 10;
+  console.log(typeof b); // number
+  console.log(b.length); // undefined
+</script>

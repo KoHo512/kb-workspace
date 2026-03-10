@@ -1,0 +1,39 @@
+<script>
+  let arr = [10, 20, 30, 40, 50];
+
+  // forEach 반복문은 배열에 사용하기 좋음
+  arr.forEach(function (value, index) {
+    console.log('array index : ' + index + ', value : ' + value);
+  });
+
+  // for in 반복문은 배열과 객체 모두 사용할 수 있는 반복문
+  let arr1 = [100, 200, 300, 400];
+  let obj = {
+    num: 10,
+    str: 'hello',
+    arr: [],
+  };
+
+  for (let key in arr1) {
+    console.log(arr1[key]);
+  }
+
+  for (let key in obj) {
+    console.log(obj[key]);
+  }
+
+  // for of 반복문 - ES6 추가된 구문
+  for (let prop of arr) {
+    console.log(prop, arr[prop]);
+  }
+
+  let map = new Map(['k1', 'v1'], ['k2', 'v2']);
+
+  for (let key of map.keys()) {
+    console.log('key : ' + key);
+  }
+
+  // for (let value of map.values()) {
+  //   console.log('value : ' + value);
+  // }
+</script>

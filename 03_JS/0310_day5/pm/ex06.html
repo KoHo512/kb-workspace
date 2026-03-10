@@ -1,0 +1,38 @@
+<script>
+  // Set 객체 선언
+  const set1 = new Set();
+
+  // 값 추가 - add()
+  set1.add('java');
+  set1.add('python');
+  set1.add('html');
+  set1.add('node');
+
+  set1.add('script').add('image'); // 꼬리 물고 선언 가능
+  console.log(set1);
+
+  set1.add('image'); // 추가되지 않음 (중복값 허용 X)
+  console.log(set1);
+
+  // Set 객체 선언
+  const fruits = new Set(['apple', 'banana', 'melon']);
+  console.log(fruits);
+
+  // // 값 삭제 - delete()
+  // fruits.delete('banana');
+  // console.log(fruits);
+
+  // // 값 전체 삭제 - clear()
+  // fruits.clear();
+  // console.log(fruits);
+
+  // 값 접근
+  fruits.forEach((val, val1, fruits) => console.log(val, val1, fruits));
+
+  for (const value of fruits) {
+    console.log('과일바구니 과일 종류 : ' + value);
+  }
+
+  console.log(fruits.has('banana'));
+  console.log(fruits.size);
+</script>
