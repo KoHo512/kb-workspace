@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>Document</title>
+    <script>
+      const score = [82, 96, 54, 76, 92, 99, 69, 88];
+      console.log('before : ' + score);
+
+      //
+      // 오름차순 정렬
+      score.sort();
+      console.log('after : ' + score);
+
+      //
+      // 내림차순 정렬
+
+      // 1. 비교 기준 전달
+      // function compare(left, right) {
+      //   return right - left;
+      // }
+
+      // score.sort(compare);
+
+      // 화살표 함수로 작성
+      score.sort((a, b) => b - a);
+
+      // 2. 정렬 후 뒤집기
+      // score.sort();
+      // score.reverse();
+      console.log('after : ' + score);
+
+      //
+      //
+      // sort()는 문자열로 비교해서 정렬함
+      const score2 = [82, 96, 54, 76, 9, 100, 69, 88];
+      console.log('before : ' + score2);
+
+      score2.sort();
+      console.log('after : ' + score2); // after : 100,54,69,76,82,88,9,96
+
+      score2.sort((a, b) => b - a); // b - a 계산 과정에서 숫자로 변환돼서 원하는대로 숫자 정렬됨
+      console.log('after : ' + score2); // after : 100,96,88,82,76,69,54,9
+    </script>
+  </head>
+  <body></body>
+</html>
