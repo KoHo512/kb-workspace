@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <div id="app">{{ message }}</div>
+
+    <script>
+      // 비구조 할당 - 배열이나 객체 속성의 값을 개별 변수에 담을 수 있는 JavaScript 기법
+      const { createApp } = Vue;
+
+      // createApp 함수를 호출하면 어플리케이션 인스턴스 생성 가능
+      createApp({
+        data() {
+          return {
+            message: 'Hello Vue.js!',
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
+
+<!-- CreateApp 함수로 생성되는 인스턴스를 애플리케이션 인스턴스, 앱 인스턴스, 뷰 앱 인스턴스 등등으로 부름 -->
