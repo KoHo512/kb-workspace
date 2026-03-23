@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>Document</title>
+    <style>
+      .buttonColor {
+        background-color: aqua;
+        color: black;
+      }
+      .buttonLayout {
+        text-align: center;
+        width: 120px;
+      }
+      .staticBorder {
+        border: khaki dashed 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <input type="checkbox" v-model="isChecked" />레이아웃 적용 여부 <br />
+      <button
+        class="staticBorder"
+        :class="[btnColor, isChecked ? btnLayout:'']"
+      >
+        버튼
+      </button>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            btnColor: 'buttonColor',
+            btnLayout: 'buttonLayout',
+            isChecked: false,
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

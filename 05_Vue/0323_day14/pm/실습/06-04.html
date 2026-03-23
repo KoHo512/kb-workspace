@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button :style="[myColor, myLayout]">버튼1</button>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            myColor: {
+              backgroundColor: 'purple',
+              color: 'yellow',
+            },
+            myLayout: {
+              width: '150px',
+              height: '80px',
+              textAlin: 'center',
+            },
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

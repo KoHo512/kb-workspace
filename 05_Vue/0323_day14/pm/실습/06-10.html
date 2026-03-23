@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .warning {
+        background-color: skyblue;
+      }
+      .warnicon {
+        padding-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>1부터 100까지만 입력 가능합니다.</p>
+      점수 : <input type="text" v-model.number="score" :class="checkScore" />
+      <i
+        class="fa-solid fa-triangle-exclamation warnicon"
+        v-if="checkScore.warning"
+        title="1부터 100까지만 입력하세요."
+      ></i>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      let vm = Vue.createApp({
+        name: 'App',
+        data() {
+          return {
+            score: 1,
+          };
+        },
+        computed: {
+          checkScore() {
+            return { warning: this.score < 1 || this.score > 100 };
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
