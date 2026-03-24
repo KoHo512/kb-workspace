@@ -1,3 +1,5 @@
+<!-- Composition API와 Options API의 데이터 세팅 방식 차이 -->
+
 <template>
   <div id="date">
     {{ date }}
@@ -17,7 +19,7 @@ export default {
     };
   },
 
-  // Option API
+  // Options API
   data() {
     return {
       date2: Date().toString(),
