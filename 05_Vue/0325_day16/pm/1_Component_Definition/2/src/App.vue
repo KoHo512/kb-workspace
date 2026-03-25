@@ -1,0 +1,12 @@
+<!-- <script setup>
+import FirstChild from './components/FirstChild.vue';
+import SecondChild from './components/SecondChild.vue';
+</script> -->
+
+<!-- FirstChild 컴포넌트 등록 -->
+<!-- 전역(global) 등록 : 컴포넌트를 뷰 어플리케이션 모든 곳에서 사용 가능  - main.js에 등록해야 함 -->
+
+<template>
+  <FirstChild />
+  <SecondChild />
+</template>
