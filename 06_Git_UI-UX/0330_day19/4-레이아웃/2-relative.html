@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>Relative</title>
+  </head>
+  <body>
+    <div class="card">
+      <div class="box"></div>
+    </div>
+
+    <style>
+      .card {
+        width: 200px;
+        height: 150px;
+        border: 1px solid black;
+      }
+
+      .box {
+        width: 50px;
+        height: 50px;
+        background: red;
+        /* 자기 자신을 기준으로 이동 */
+        /* 원래 자리 그대로 유지 - 주변의 다른 태그들이 그 자리를 차지하지 X => 전체 흐름 유지 */
+        position: relative;
+        top: 20px;
+        left: 20px;
+      }
+    </style>
+  </body>
+</html>
