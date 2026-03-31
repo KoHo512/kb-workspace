@@ -1,0 +1,16 @@
+.container {
+  border: 2px solid black;
+  display: grid;
+  /* grid-template-columns: 100px 100px 100px; */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  /* grid-template-columns: 1fr 2fr 1fr; */
+  /* grid-template-columns: repeat(3, 100px); */
+  /* grid-template-columns: repeat(3, 1fr); */
+  grid-template-columns: repeat(3, 1fr 2fr);
+  grid-template-rows: 80px 80px;
+  /* gap: 10px; */
+}
+
+.container > div {
+  border: 1px solid gray;
+}

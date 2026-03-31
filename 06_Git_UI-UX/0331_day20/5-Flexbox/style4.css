@@ -1,0 +1,39 @@
+.container {
+  border: 1px solid black;
+  display: flex;
+  width: 600px;
+  height: 300px;
+  flex-direction: row;
+  /* align-items: flex-start; */
+  /* align-items: flex-end; */
+  align-items: center;
+
+  /* 기본값 - height 설정 없어야 적용됨 */
+  /* align-items: stretch; */
+}
+
+.item {
+  padding: 5px 45px;
+  margin: 5px;
+}
+
+.item1 {
+  background: red;
+  height: 100px;
+}
+.item2 {
+  background: orange;
+  height: 150px;
+}
+.item3 {
+  background: yellow;
+  height: 100px;
+}
+.item4 {
+  background: green;
+  height: 50px;
+}
+.item5 {
+  background: blue;
+  height: 100px;
+}

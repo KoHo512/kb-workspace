@@ -1,0 +1,31 @@
+.container {
+  border: 1px solid black;
+  display: flex;
+  /* justify-content: flex-start; */
+  /* justify-content: flex-end; */
+  /* justify-content: center; */
+  /* justify-content: space-between; */
+  /* justify-content: space-around; */
+  justify-content: space-evenly;
+}
+
+.item {
+  padding: 5px 45px;
+  margin: 5px;
+}
+
+.item1 {
+  background: red;
+}
+.item2 {
+  background: orange;
+}
+.item3 {
+  background: yellow;
+}
+.item4 {
+  background: green;
+}
+.item5 {
+  background: blue;
+}

@@ -1,0 +1,25 @@
+.container {
+  border: 1px solid black;
+  display: flex;
+}
+
+.item {
+  padding: 5px 45px;
+  margin: 5px;
+}
+
+.item1 {
+  background: red;
+}
+.item2 {
+  background: orange;
+}
+.item3 {
+  background: yellow;
+}
+.item4 {
+  background: green;
+}
+.item5 {
+  background: blue;
+}
