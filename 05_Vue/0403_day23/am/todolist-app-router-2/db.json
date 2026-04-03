@@ -1,0 +1,35 @@
+{
+  "todos": [
+    {
+      "id": "2",
+      "todo": "React학습",
+      "desc": "설명2",
+      "done": false
+    },
+    {
+      "id": "3",
+      "todo": "ContextAPI 학습",
+      "desc": "설명3",
+      "done": true
+    },
+    {
+      "todo": "테스트",
+      "desc": "테스트",
+      "id": "OsWXeoYK2_o",
+      "done": false
+    },
+    {
+      "todo": "테스트",
+      "desc": "테스트",
+      "id": "fKOT7Lgwp7I",
+      "done": true
+    },
+    {
+      "todo": "테스트",
+      "desc": "테스트테스트",
+      "done": false,
+      "id": "FZb9J6MTUic"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
