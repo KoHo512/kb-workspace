@@ -1,4 +1,4 @@
-package pratice_0415;
+package practice_0415;
 
 public class IfElseExample {
     public static void main(String[] args) {

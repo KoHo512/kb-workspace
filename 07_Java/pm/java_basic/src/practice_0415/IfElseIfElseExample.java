@@ -1,4 +1,4 @@
-package pratice_0415;
+package practice_0415;
 
 /* score값의구간을검사하여, 점수와등급을출력하는클래스를완성하세요.
   조건:

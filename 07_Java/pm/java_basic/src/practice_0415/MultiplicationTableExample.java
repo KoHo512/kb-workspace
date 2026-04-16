@@ -1,4 +1,4 @@
-package pratice_0415;
+package practice_0415;
 
 /*
 * 이중for루프를사용하여 2단부터 9단까지 구구단을출력하세요.

@@ -1,4 +1,4 @@
-package pratice_0415;
+package practice_0415;
 
 /*
  * while문을사용하여1부터100까지의합을구하고, 그결과를출력하세요

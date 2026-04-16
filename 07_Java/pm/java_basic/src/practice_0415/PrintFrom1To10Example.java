@@ -1,4 +1,4 @@
-package pratice_0415;
+package practice_0415;
 
 /*
  * for문을사용하여다음과같이출력하세요

@@ -1,0 +1,6 @@
+1. 메소드를 이용한 기능 재사용성
+2. 출력 printf() 포멧 정리
+3. 자바 메모리 구조
+    Method Area : 클래스 원형, static 변수
+    Call Stack Area : 참조 변수, 메소드 프레임, 지역 변수 (직접 초기화해야 함)
+    Heap Area : 인스턴스
