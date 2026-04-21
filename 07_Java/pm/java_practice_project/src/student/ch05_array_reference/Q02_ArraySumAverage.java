@@ -22,19 +22,20 @@ public class Q02_ArraySumAverage {
                 {100, 95, 80, 70}
         };
         int total = 0;
-        int num = 0;
+        int count = 0;
 
         // TODO: 중첩 for문으로 총합을 구하세요.
         // TODO: 전체 개수를 세어 평균을 구하세요.
         for (int i = 0; i < scores.length; i++) {
             for (int j = 0; j < scores[i].length; j++) {
-                num++;
+//                System.out.printf("scores[%d][%d] = %d\n", i, j, scores[i][j]);
                 total += scores[i][j];
+                count++;
             }
         }
 
         // TODO: 결과를 출력하세요.
-        double average = (double) total / num;
+        double average = (double) total / count;
         System.out.println("총합 : " + total);
         System.out.printf("평균 : %.2f", average);
     }

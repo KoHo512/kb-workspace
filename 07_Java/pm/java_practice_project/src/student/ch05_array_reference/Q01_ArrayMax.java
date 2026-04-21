@@ -15,7 +15,11 @@ public class Q01_ArrayMax {
 
         // TODO: for문을 사용해 최대값을 구하세요.
         for (int i = 0; i < scores.length; i++) {
-            maxValue = maxValue > scores[i] ? maxValue : scores[i];
+//            maxValue = maxValue > scores[i] ? maxValue : scores[i];
+
+            if (scores[i] > maxValue) {
+                maxValue = scores[i];
+            }
         }
 
         // TODO: 결과를 출력하세요.
