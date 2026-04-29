@@ -1,0 +1,12 @@
+트리(Tree)
+- Node와 Branch를 이용해 사이클을 이루지 않도록 구성한 데이터 구조
+- 트리 중 이진트리(Binary Tree) 형태의 구조를 탐색(검색) 알고리즘 구현에 많이 활용
+
+- 구성 요소
+    1. Node : 트리에서 데이터를 저장하는 요소 (= 데이터 + 연결된 노드에 대한 Branch 정보)
+    2. Root Node : 트리의 시작 노드, 하나만 존재
+    3. Level : 최상위 노드의 레벨 = 0, 각 하위 Branch로 연결된 노드의 깊이
+    4. Parent Node, Child Node
+    5. Leaf Node(Terminal Node) : Child Node가 없는 노드
+    6. Sibling Node(Brother Node) : 동일한 Parent Node를 가진 노드
+    7. Depth : 트리에서 Node가 가질 수 있는 최대 Level

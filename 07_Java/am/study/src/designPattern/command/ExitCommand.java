@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ExitCommand implements Command {
     @Override
     public void execute() {
-        Scanner scanner=new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print("종료하시겠습니까?(Y/n) : ");
         String answer = scanner.nextLine();
