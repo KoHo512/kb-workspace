@@ -104,36 +104,38 @@ public class NodeMgmt {
         if (currentNode.left != null && currentNode.right == null) {
             if (data < parentNode.value) parentNode.left = currentNode.left;
             else parentNode.right = currentNode.left;
-
-            return true;
         }
 
         // CASE 2-2 : 오른쪽 자식만 가지고 있을 경우
-        if (currentNode.left == null && currentNode.right != null) {
+        else if (currentNode.left == null && currentNode.right != null) {
             if (data < parentNode.value) parentNode.left = currentNode.right;
             else parentNode.right = currentNode.right;
-
-            return true;
         }
 
-        // 진행 중
-//        // CASE 3 : 삭제할 Node가 Child Node를 2개 가지고 있을 경우
-//        Node parNode = currentNode;
-//        Node curNode = currentNode.right;
-//
-//        while (curNode.left != null) {
-//            parNode = curNode;
-//            curNode = curNode.left;
-//        }
-//
-//        curNode.left = currentNode.left;
-//
-//        if (data < parentNode.value) {
-//            parentNode.left = currentNode.right;
-//        } else {
-//            parentNode.right = currentNode.right;
-//        }
+        // CASE 3 : 삭제할 Node가 Child Node를 2개 가지고 있을 경우
+        else {
+            // 삭제할 Node의 오른쪽 Child Node의 자식 중 가장 작은 값 찾기
+            Node parNode = currentNode;
+            Node findNode = currentNode.right;
 
+            while (findNode.left != null) {
+                parNode = findNode;
+                findNode = findNode.left;
+            }
+
+            // 찾은 Node를 삭제할 Node의 위치로 올리기
+            if (findNode.right != null) parNode.left = findNode.right;
+            else parNode.left = null;
+
+            findNode.left = currentNode.left;
+            findNode.right = currentNode.right;
+
+            if (data < parentNode.value) {
+                parentNode.left = findNode;
+            } else {
+                parentNode.right = findNode;
+            }
+        }
         return true;
     }
 
