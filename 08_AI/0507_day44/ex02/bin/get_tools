@@ -1,0 +1,33 @@
+#!/bin/bash
+cat <<EOF
+[
+  {
+    "name": "echo",
+    "description": "A tool that returns the input text as it is.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The string to return."
+        }
+      },
+      "required": ["text"]
+    }
+  },
+  {
+    "name": "blog",
+    "description": "A tool that returns the blog text about keyword",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "keyword",
+          "description": "The string to return."
+        }
+      },
+      "required": ["text"]
+    }
+  }
+]
+EOF

@@ -1,0 +1,25 @@
+#!/bin/bash
+FUNC_NAME="$1"
+shift
+case "$FUNC_NAME" in
+  echo)
+    # Read parameters from stdin
+    read INPUT_JSON
+    # Extract text using jq
+    TEXT=$(echo "$INPUT_JSON" | jq -r '.text')
+    # Output result as JSON
+    echo "{\"result\": \"$TEXT\"}"
+    ;;
+  blog)
+    # Read parameters from stdin
+    read INPUT_JSON
+    # Extract text using jq
+    KEYWORD=$(echo "$INPUT_JSON" | jq -r '.text')
+    PROMPT="@${KEYWORD}를 주제로 한 블로그 포스팅을 한국어로 작성해줘."
+    BLOG_POST=$(gemini -p "$PROMPT")
+    # Output result as JSON
+    echo "{\"result\": \"$BLOG_POST\"}"
+    ;;
+  *)
+    echo "{\"error\": \"Unknown function: $FUNC_NAME\"}"
+esac

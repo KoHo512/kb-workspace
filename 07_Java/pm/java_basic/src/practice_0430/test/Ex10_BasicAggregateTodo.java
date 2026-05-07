@@ -25,6 +25,29 @@ public class Ex10_BasicAggregateTodo {
                 .sum();
         System.out.println("Done 주문 금액 합계 : " + sum);
 
+        double average = orders.stream()
+                .filter(order -> order.getStatus().equals("DONE"))
+                .mapToInt(Order::getAmount)
+                .average().orElse(0.0);
+        System.out.println("Done 주문 금액 평균 : " + average);
+
+        int max = orders.stream()
+                .filter(order -> order.getStatus().equals("DONE"))
+                .mapToInt(Order::getAmount)
+                .max().orElse(0);
+        System.out.println("Done 주문 금액 최댓값 : " + max);
+
+        int min = orders.stream()
+                .filter(order -> order.getStatus().equals("DONE"))
+                .mapToInt(Order::getAmount)
+                .min().orElse(0);
+        System.out.println("DONE 주문 금액 최솟값 : " + min);
+
         // TODO: READY 주문 중 첫 번째 주문 금액을 findFirst로 구하세요. 없으면 -1을 출력하세요.
+        int firstOrder = orders.stream()
+                .filter(order -> order.getStatus().equals("READY"))
+                .mapToInt(Order::getAmount)
+                .findFirst().orElse(-1);
+        System.out.println("READY 주문 중 첫 번째 주문 금액 : " + firstOrder);
     }
 }
