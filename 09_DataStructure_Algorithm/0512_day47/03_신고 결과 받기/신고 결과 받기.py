@@ -1,11 +1,3 @@
-def solution(participant, completion):
-    for p in participant:
-        if p not in completion:
-            return p
-        
-        completion.remove(p)
-# => 효율성 테스트 통과 X
-
 def solution(id_list, report, k):
     answer = [0] * len(id_list)
     report_set = set(report)
