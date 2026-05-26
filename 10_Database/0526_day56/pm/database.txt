@@ -1,0 +1,5 @@
+데이터가 속한 세계
+- 현실 세계(Real World) : 둘 이상의 특성을 가진 Entity
+- 개념 세계(Conceptual World) : 둘 이상의 속성을 가진 Entity Type
+- 컴퓨터 세계(Computer World) : 필드들이 모여 Record
+  - 속성 = 필드 = 컬럼
