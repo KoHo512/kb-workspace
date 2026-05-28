@@ -1,5 +1,6 @@
 USE bookstore;
 
+
 -- SELECT 문
 
 -- 질의 3-1. 모든 도서의 이름과 가격을 검색하시오.
@@ -129,7 +130,7 @@ SELECT c.name, SUM(o.saleprice)
 FROM customer c, orders o
 WHERE c.custid = o.custid
 GROUP BY c.custid
-ORDER BY C.name;
+ORDER BY c.name;
 
 -- 질의 3-25. 고객의 이름과 고객이 주문한 도서의 이름을 구하시오.
 SELECT c.name, b.bookname
