@@ -336,3 +336,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,intellij,node,vue,java
+
+# travel 프로젝트 이미지 파일
+travel-image/
