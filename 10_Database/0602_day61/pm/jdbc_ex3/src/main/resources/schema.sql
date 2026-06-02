@@ -1,0 +1,31 @@
+DROP DATABASE IF EXISTS jdbc_ex1;
+CREATE DATABASE jdbc_ex1 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE jdbc_ex1;
+
+DROP TABLE IF EXISTS boards;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS person;
+
+CREATE TABLE person (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userid VARCHAR(50) NOT NULL UNIQUE,
+    username VARCHAR(50) NOT NULL,
+    userpassword VARCHAR(100) NOT NULL,
+    userage INT,
+    useremail VARCHAR(100)
+);
+
+CREATE TABLE boards (
+    bno INT AUTO_INCREMENT PRIMARY KEY,
+    btitle VARCHAR(200) NOT NULL,
+    bcontent TEXT,
+    bwriter VARCHAR(50) NOT NULL,
+    bdate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    bfilename VARCHAR(255),
+    bfiledata LONGBLOB
+);

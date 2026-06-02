@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.scoula.travel.dao.TravelDao">
+    <!--    <select id="…" …><![CDATA[      ]]></select>-->
+    <!--    <insert id="…" …><![CDATA[      ]]></insert>-->
+    <!--    <update id="…" …><![CDATA[      ]]></update>-->
+    <!--    <delete id="…" …><![CDATA[      ]]></delete>-->
+    <select id="getTotalCount" resultType="int">
+        <![CDATA[
+        SELECT COUNT(*)
+        FROM tbl_travel
+        ]]>
+    </select>
+    <select id="getTravels" resultType="TravelVO">
+        <![CDATA[
+        SELECT *
+        FROM tbl_travel
+        ORDER BY district, title
+            LIMIT #{start}, #{size}
+        ]]>
+    </select>
+    <select id="getDistricts" resultType="String">
+        <![CDATA[
+        SELECT DISTINCT district
+        FROM tbl_travel
+        ORDER BY district
+        ]]>
+    </select>
+    <select id="getTravelsByDistrict" resultType="TravelVO">
+        <![CDATA[
+        SELECT *
+        FROM tbl_travel
+        WHERE district = #{district}
+        ORDER BY district, title
+        ]]>
+    </select>
+    <select id="getTravel" resultType="TravelVO">
+        <![CDATA[
+        SELECT *
+        FROM tbl_travel
+        WHERE no = #{no}
+        ]]>
+    </select>
+
+    <insert id="insert" parameterType="TravelVO">
+        <![CDATA[
+        INSERT INTO tbl_travel (district, title, description, address, phone)
+        VALUES (#{district}, #{title}, #{description}, #{address}, #{phone})
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="TravelVO">
+        <![CDATA[
+        UPDATE tbl_travel
+        SET district    = #{district},
+            title       = #{title},
+            description = #{description},
+            address     = #{address},
+            phone       = #{phone},
+            WHERE no = #{no}
+        ]]>
+    </update>
+
+    <delete id="remove">
+        <![CDATA[
+        DELETE
+        FROM tbl_travel
+        WHERE no = #{no}
+        ]]>
+    </delete>
+</mapper>
