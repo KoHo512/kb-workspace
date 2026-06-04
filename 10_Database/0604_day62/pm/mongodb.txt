@@ -1,0 +1,9 @@
+mongodb+srv://kb:<db_password>@clusterkb0.fws6zph.mongodb.net/
+
+kb
+kb1234
+
+contractAdmin
+PplLgdYHcI1EJUTn
+
+mongodb+srv://contractAdmin:PplLgdYHcI1EJUTn@clusterkb0.fws6zph.mongodb.net/
