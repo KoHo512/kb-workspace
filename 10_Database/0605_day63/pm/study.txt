@@ -1,0 +1,10 @@
+MongoDB : Document 기반 DB
+
+MongoDB <=> Java
+Java POJO(Plain O Java Object)
+MongoDB의 Document 객체를 직접 다루지 않고, Java POJO와 연동시켜 객체 지향 프로그래밍 방식으로 데이터 관리
+
+MongoDB와 JavaPOJO 연동은
+MongoDB Document를 Java 객체로 자동 매핑하여 객체 지향을 가능하게 하고,
+타이안전성, 유지보수성, 가독성을 향상시키기 위해 사용
+=> 대규모 데이터를 처리하는 어플리케이션에 적합
