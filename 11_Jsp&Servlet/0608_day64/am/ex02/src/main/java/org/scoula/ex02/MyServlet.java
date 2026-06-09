@@ -16,4 +16,14 @@ public class MyServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.println("<h1>Hello Servlet!</h1>");
     }
+
+    @Override
+    public void destroy() {
+        System.out.println("destroy 호출");
+    }
+
+    @Override
+    public void init() throws ServletException {
+        System.out.println("init 호출");
+    }
 }
