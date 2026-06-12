@@ -1,16 +1,15 @@
-package com.kb.webapp_todo.todo.dto;
+package com.kb.webapp_todo.todo.domain;
 
 import lombok.*;
 
 import java.time.LocalDate;
 
+@Getter
+@Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
-@Builder
-public class TodoDTO {
+public class TodoVO {
     private Long tno;
     private String title;
     private LocalDate dueDate;

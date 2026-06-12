@@ -1,12 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Todo Register Page </title>
 </head>
 <body>
-<h1>Todo 등록 화면</h1>
 <form action="/todo/register" method="post">
-    <button type="submit">Todo 등록</button>
+    <div>
+        <input type="text" name="title" placeholder="INSERT TITLE">
+    </div>
+    <div>
+        <input type="date" name="dueDate">
+    </div>
+    <div>
+        <button type="reset">RESET</button>
+        <button type="submit">REGISTER</button>
+    </div>
 </form>
 </body>
 </html>

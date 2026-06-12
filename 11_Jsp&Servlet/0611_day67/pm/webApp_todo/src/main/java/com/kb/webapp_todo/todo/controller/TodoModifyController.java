@@ -9,57 +9,51 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@WebServlet(name = "todoRegisterController", value = "/todo/register")
+@WebServlet(name = "todoModifyController", value = "/todo/modify")
 @Log4j2
-public class TodoRegisterController extends HttpServlet {
+public class TodoModifyController extends HttpServlet {
 
     private TodoService todoService = TodoService.INSTANCE;
     private final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 로그인한 사용자만이 Todo를 등록할 수 있도록 재구성
-        log.info("/todo/register GET .......");
-
-        HttpSession session = req.getSession();
-
-        if(session.isNew()) {
-            log.info("JESSIONID가 없는 새로운 요청한 사용자");
-            resp.sendRedirect("/login");
-            return;
+        try {
+            Long tno = Long.parseLong(req.getParameter("tno"));
+            TodoDTO todoDTO = todoService.get(tno);
+            //모델 담기
+            req.setAttribute("dto", todoDTO);
+            req.getRequestDispatcher("/WEB-INF/todo/modify.jsp").forward(req, resp);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw new ServletException("modify get... error");
         }
-
-        if(session.getAttribute("loginInfo") == null) {
-            log.info("로그인한 정보가 없는 사용자");
-            resp.sendRedirect("/login");
-            return;
-        }
-
-        req.getRequestDispatcher("/WEB-INF/todo/register.jsp").forward(req, resp);
-
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String finishedStr = req.getParameter("finished");
 
         TodoDTO todoDTO = TodoDTO.builder()
+                .tno(Long.parseLong(req.getParameter("tno")))
                 .title(req.getParameter("title"))
                 .dueDate(LocalDate.parse(req.getParameter("dueDate"), DATEFORMATTER))
+                .finished(finishedStr != null && finishedStr.equals("on"))
                 .build();
 
-        log.info("/todo/register POST...");
+        log.info("/todo/modify POST...");
         log.info(todoDTO);
+
         try {
-            todoService.register(todoDTO);
+            todoService.modify(todoDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("/todo/list");
 
+        resp.sendRedirect("/todo/list");
     }
 }
