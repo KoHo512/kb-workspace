@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.scoula'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+ext {
+    springVersion = '5.3.37'
+    junitVersion = '5.10.2'
+    mysqlConnectorVersion = '8.0.33'
+    hikariVersion = '5.1.0'
+    slf4jVersion = '2.0.13'
+}
+
+dependencies {
+    implementation "org.springframework:spring-context:${springVersion}"
+    implementation "com.zaxxer:HikariCP:${hikariVersion}"
+    implementation "mysql:mysql-connector-java:${mysqlConnectorVersion}"
+    implementation "org.slf4j:slf4j-simple:${slf4jVersion}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "org.springframework:spring-test:${springVersion}"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
