@@ -1,0 +1,44 @@
+PRG 패턴
+- POST 방식의 요청에 대한 처리를 하고 Redirect 해서 GET 방식으로 특정 페이지로 이동하는 패턴
+- 스프링 MVC에서는 RedirectAttributes 타입 제공 => Model
+    - addAttribute(키, 값); - 리다이렉트할 때까지 쿼리 스트링 값 저장
+    - addFlashAttribute(키, 값); - 일회용 데이터 전달 (사용되면 값 삭제)
+
+스프링MVC 예외 처리
+- 컨트롤러에서 발생하는 예외를 처리하는 가장 일반적인 방법 : @ControllerAdvice
+- 선언된 클래스는 빈으로 등록해 처리
+- NumberFormatException 예외 발생했을 때 처리하는 메소드 @ExceptionHandler(NumberFormatException).class) 등록
+- @ResponseBody : 문자열이나 Json 객체를 브라우저에게 그대로 전송하는 응답 객체
+
+
+HTTP Status
+400번대 : 사용자가 요청했을 때 - 잘못된 요청, 요청한 리소스 없을 때, ...
+500번대 : 서버 내부 문제, 오류, ...
+
+
+Todo 프로젝트 목표
+스프링 WEB MVC(= 스프링 프레임워크 <=(주입)= 스프링 MVC)
++ MyBatis + CRUD + 페이징 처리 + 검색 필터
+
+
+- Todo Spring Web Application 구현
+    1. 프로젝트 환경 세팅
+        - JVM 버전 확인 및 세팅
+        - TomCat Server 버전 및 환경 세팅
+        - 사용하는 오픈소스 라이브러리 선택 - build.gradle dependencies 등록 (시스템 설계)
+
+    2. 시스템 설계 맞춰 프로젝트 패키지 및 클래스 구조 세팅
+        - service, config 패키지 추가
+
+    3. 데이터베이스 세팅 (webdb.todo 테이블에 추가된 컬럼-writer )
+
+    4. Application Context (root-context.xml) 세팅
+        - 빈(Bean)으로 등록, 관리되어야 할 패키지 등록
+        - Conneciton Pool 환경 세팅 => DataSource 세팅 빈
+        - MyBatis Bean 등록, annotation-driven 세팅
+
+    5. 사용자 화면 처리 (.jsp 파일 구현)
+        - list.jsp
+        - register.jsp
+        - modify.jsp (delete 처리 포함)
+        - read.jsp

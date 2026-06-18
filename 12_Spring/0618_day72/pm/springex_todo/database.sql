@@ -1,0 +1,1 @@
+ALTER TABLE todo ADD writer VARCHAR(50) NOT NULL;
