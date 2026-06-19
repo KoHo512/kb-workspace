@@ -8,6 +8,15 @@
     </settings>
     
     <typeAliases>
-        <package name="org.scoula.board.domain"/>
+<!--        <package name="org.scoula.board.domain"/>-->
+
+        <typeAlias
+                alias="BoardVO"
+                type="org.scoula.board.domain.BoardVO"/>
+
+<!--        <typeAlias-->
+<!--                alias="TblBoard"-->
+<!--                type="org.scoula.board.domain.TblBoard"/>-->
+
     </typeAliases>
 </configuration>

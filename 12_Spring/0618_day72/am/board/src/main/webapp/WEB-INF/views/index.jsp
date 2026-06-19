@@ -1,9 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="ko">
-<head>
-    <title>Title</title>
-</head>
-<body>
-    <h1>환영합니다.</h1>
-</body>
-</html>
+<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%@ include file="./layouts/header.jsp" %>
+
+<%-- 개별 페이지 --%>
+<h1>환영합니다.</h1>
+
+<div>첫 번째 페이지</div>
+
+<%@ include file="./layouts/footer.jsp" %>

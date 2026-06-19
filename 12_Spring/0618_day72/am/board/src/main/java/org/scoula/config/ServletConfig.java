@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 // DispatcherServlet 구성을 위한 설정
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.scoula.controller", "org.scoula.exception"})
+@ComponentScan(basePackages = {"org.scoula.controller", "org.scoula.exception", "org.scoula.board.controller"})
 public class ServletConfig implements WebMvcConfigurer {
 
     @Override
