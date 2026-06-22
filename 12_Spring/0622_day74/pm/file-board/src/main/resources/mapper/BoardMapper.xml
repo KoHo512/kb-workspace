@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.scoula.board.mapper.BoardMapper">
+
+    <!-- TODO: 첨부파일 resultMap을 작성하세요. -->
+    <resultMap id="attachmentMap" type="org.scoula.board.domain.BoardAttachmentVO">
+        <id column="ano" property="no" />
+        <result column="abno" property="bno" />
+        <result column="filename" property="filename" />
+        <result column="path" property="path" />
+        <result column="content_type" property="contentType" />
+        <result column="size" property="size" />
+        <result column="a_reg_date" property="regDate" />
+    </resultMap>
+
+    <!-- TODO: 게시글 + 첨부파일 1:N 관계를 collection으로 매핑하세요. -->
+    <resultMap id="boardMap" type="org.scoula.board.domain.BoardVO">
+        <id column="no" property="no" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="writer" property="writer" />
+        <result column="reg_date" property="regDate" />
+        <result column="update_date" property="updateDate" />
+        <collection property="attaches" resultMap="attachmentMap" />
+    </resultMap>
+
+    <select id="getList" resultType="org.scoula.board.domain.BoardVO">
+        select no, title, content, writer, reg_date, update_date
+        from tbl_board
+        order by no desc
+    </select>
+
+    <!-- TODO: left outer join으로 게시글 상세와 첨부파일 목록을 함께 조회하세요. -->
+    <select id="get" resultMap="boardMap">
+        SELECT b.*, a.no AS ano, a.bno AS abno, a.filename, a.path, a.content_type, a.size, a.reg_date AS a_reg_date
+        FROM tbl_board b
+        LEFT OUTER JOIN tbl_board_attachment a
+        ON b.no = a.bno
+        WHERE b.no = #{no}
+        ORDER BY a.filename;
+    </select>
+
+    <insert id="create" useGeneratedKeys="true" keyProperty="no">
+        insert into tbl_board(title, content, writer)
+        values(#{title}, #{content}, #{writer})
+    </insert>
+
+    <update id="update">
+        update tbl_board
+        set title = #{title}, content = #{content}, writer = #{writer}
+        where no = #{no}
+    </update>
+
+    <delete id="delete">
+        delete from tbl_board
+        where no = #{no}
+    </delete>
+
+    <!-- TODO: 첨부파일 등록 SQL을 작성하세요. -->
+    <insert id="createAttachment">
+        INSERT INTO tbl_board_attachment (filename, path, content_type, size, bno)
+        VALUES (#{filename}, #{path}, #{contentType}, #{size}, #{bno})
+    </insert>
+
+    <!-- TODO: 게시글 번호로 첨부파일 목록을 조회하세요. -->
+    <select id="getAttachmentList" resultType="org.scoula.board.domain.BoardAttachmentVO">
+        SELECT * FROM tbl_board_attachment
+        WHERE bno = #{bno}
+        ORDER BY filename
+    </select>
+
+    <!-- TODO: 첨부파일 번호로 첨부파일 1개를 조회하세요. -->
+    <select id="getAttachment" resultType="org.scoula.board.domain.BoardAttachmentVO">
+        SELECT * FROM tbl_board_attachment
+        WHERE no =#{no}
+    </select>
+
+    <!-- TODO: 첨부파일 번호로 첨부파일 메타데이터를 삭제하세요. -->
+    <delete id="deleteAttachment">
+        DELETE FROM tbl_board_attachment
+        WHERE no = #{no}
+    </delete>
+</mapper>

@@ -2,11 +2,16 @@ package org.scoula.board.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.scoula.board.domain.BoardAttachmentVO;
 import org.scoula.board.domain.BoardVO;
 import org.scoula.board.dto.BoardDTO;
 import org.scoula.board.mapper.BoardMapper;
+import org.scoula.common.util.UploadFiles;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -15,6 +20,8 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
+    private final static String BASE_DIR = "c:/upload/board";
+
     final private BoardMapper mapper;
 
     @Override
@@ -34,13 +41,37 @@ public class BoardServiceImpl implements BoardService {
                 .orElseThrow(NoSuchElementException::new);
     }
 
+    // 2개 이상의 insert 문이 실행될 수 있으므로 트랜잭션 처리
+    // RuntimeException인 경우에만 자동 rollback
+    @Transactional
     @Override
     public void create(BoardDTO board) {
         log.info("create.........." + board);
 
-        BoardVO vo = board.toVO();
-        mapper.create(vo);
-        board.setNo(vo.getNo());
+        BoardVO boardVO = board.toVO();
+        mapper.create(boardVO);
+        board.setNo(boardVO.getNo());
+
+        // 파일 업로드
+        List<MultipartFile> files = board.getFiles();
+        if (files != null && !files.isEmpty()) {
+            upload(boardVO.getNo(), files);
+        }
+    }
+
+    private void upload(Long bno, List<MultipartFile> files) {
+        for (MultipartFile part : files) {
+            if (part.isEmpty()) continue;
+
+            try {
+                String uploadPath = UploadFiles.upload(BASE_DIR, part);
+                BoardAttachmentVO attach = BoardAttachmentVO.of(part, bno, uploadPath);
+                mapper.createAttachment(attach);
+            } catch (IOException e) {
+                // @Transactional에서 감지 - 자동 rollback
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
@@ -55,5 +86,15 @@ public class BoardServiceImpl implements BoardService {
         log.info("delete.........." + no);
 
         return mapper.delete(no) == 1;
+    }
+
+    @Override
+    public BoardAttachmentVO getAttachment(Long no) {
+        return mapper.getAttachment(no);
+    }
+
+    @Override
+    public boolean deleteAttachment(Long no) {
+        return mapper.deleteAttachment(no) == 1;
     }
 }

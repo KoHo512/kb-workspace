@@ -15,6 +15,17 @@
     </div>
 </div>
 
+<div class="text-end">
+    <c:forEach var="file" items="${board.attaches}">
+        <div class="attach-file-items">
+            <a href="/board/download/${file.no}" class="file-link">
+                <i class="fa-solid fa-floppy-disk"></i>
+                    ${file.filename} (${file.fileSize})<br>
+            </a>
+        </div>
+    </c:forEach>
+</div>
+
 <hr/>
 
 <div>
