@@ -1,0 +1,32 @@
+###
+GET http://localhost:8080/api/board/
+
+###
+GET http://localhost:8080/api/board/5
+
+###
+POST http://localhost:8080/api/board/
+Content-Type: application/json
+
+{
+  "title": "테스트 제목",
+  "content": "테스트 내용",
+  "writer": "user01"
+}
+
+###
+GET http://localhost:8080/api/board/14
+
+###
+PUT http://localhost:8080/api/board/14
+Content-Type: application/json
+
+{
+  "no": "14",
+  "title": "테스트 제목 수정 수정",
+  "content": "테스트 내용 수정",
+  "writer": "user01"
+}
+
+###
+DELETE http://localhost:8080/api/board/13
