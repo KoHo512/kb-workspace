@@ -13,12 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 // DispatcherServlet 구성을 위한 설정
 @EnableWebMvc
-@ComponentScan(basePackages = {
-        "org.scoula.controller",
-        "org.scoula.exception",
-        "org.scoula.board.controller",
-        "org.scoula.weather.controller"
-})
+@ComponentScan(basePackages = {"org.scoula.controller", "org.scoula.exception"})
 public class ServletConfig implements WebMvcConfigurer {
 
     @Override
@@ -26,21 +21,6 @@ public class ServletConfig implements WebMvcConfigurer {
         registry
                 .addResourceHandler("/resources/**") // /** : 하위 폴더 포함 (= /resources/로 시작하는 모든 경로)
                 .addResourceLocations("/resources/");
-
-        // Swagger UI 리소스를 위한 핸들러 설정
-        registry.addResourceHandler("/swagger-ui.html")
-                .addResourceLocations("classpath:/META-INF/resources/");
-
-        // Swagger WebJar 리소스 설정
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");
-
-        // Swagger 리소스 설정
-        registry.addResourceHandler("/swagger-resources/**")
-                .addResourceLocations("classpath:/META-INF/resources/");
-
-        registry.addResourceHandler("/v2/api-docs")
-                .addResourceLocations("classpath:/META-INF/resources/");
     }
 
     @Override
