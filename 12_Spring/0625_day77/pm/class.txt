@@ -1,0 +1,18 @@
+Spring 내부에서 실제로 호출되는 순서
+- Tomcat
+  getRootConfigClasses() => RootContext 생성 (= 부모 컨테이너 설정)
+                          - DataSource, MyBatis, TransactionManager, Security 생성
+  getServletConfigClasses() => DispatcherServlet 생성
+                          - DispatcherServlet, Controller, ViewResolver 생성
+  getServletMapping() => URL 등록
+  getServletFilters() => Filter 등록 => SpringMVC 실행
+
+=> 만드는 건 넓은 것부터 만들고 실행은 반대로 접근
+
+
+Q&A
+- AppInitializer 클래스가 필요한 이유?
+
+- RootContext와 WebContext의 차이?
+
+- CharacterEncodingFilter는 왜 등록하였는가?
