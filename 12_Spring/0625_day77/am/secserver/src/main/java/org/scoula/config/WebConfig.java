@@ -8,7 +8,6 @@ import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration;
 
-
 // web.xml 대체
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
     final String LOCATION = "c:/upload";

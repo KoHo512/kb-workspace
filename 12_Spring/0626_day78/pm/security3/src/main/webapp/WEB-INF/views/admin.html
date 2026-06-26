@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Security 실습</title>
+    <style>
+        body { font-family: sans-serif; max-width: 760px; margin: 48px auto; line-height: 1.7; }
+        .box { padding: 20px; border: 1px solid #ccd5e0; border-radius: 12px; }
+        code { background: #f2f5f8; padding: 2px 6px; }
+    </style>
+</head>
+<body>
+<h1>관리자 전용 페이지</h1>
+<div class="box">
+    <p>현재 사용자: <strong th:text="${username}">user</strong></p>
+    <p>권한: <code th:text="${authorities}">ROLE_USER</code></p>
+    <form th:action="@{/logout}" method="post">
+        <!-- CSRF를 켠 상태에서는 Thymeleaf가 숨은 토큰 필드를 자동으로 추가합니다. -->
+        <button type="submit">로그아웃</button>
+    </form>
+</div>
+</body>
+</html>
