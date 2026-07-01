@@ -1,0 +1,30 @@
+### GET request to example server
+
+
+###
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "1234"
+}
+
+
+###
+GET http://localhost:8080/api/security/all
+
+###
+GET http://localhost:8080/api/security/member
+
+###
+GET http://localhost:8080/api/security/member
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc4Mjg5OTgzMSwiZXhwIjoxNzgyOTAwMTMxfQ.0x-VeqBVi2QK9I90RbVW7z_H7P5sP6c9aGjXLKQFwb3ARVYECYukBWQVbbHH_dTE
+
+###
+GET http://localhost:8080/api/security/admin
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc4Mjg5OTgzMSwiZXhwIjoxNzgyOTAwMTMxfQ.0x-VeqBVi2QK9I90RbVW7z_H7P5sP6c9aGjXLKQFwb3ARVYECYukBWQVbbHH_dTE
+
+###
+GET http://localhost:8080/api/security/xxx
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc4Mjg5OTgzMSwiZXhwIjoxNzgyOTAwMTMxfQ.0x-VeqBVi2QK9I90RbVW7z_H7P5sP6c9aGjXLKQFwb3ARVYECYukBWQVbbHH_dTE
