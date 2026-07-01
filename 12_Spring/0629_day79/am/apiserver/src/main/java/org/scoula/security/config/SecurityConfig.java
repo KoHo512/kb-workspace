@@ -6,10 +6,13 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.scoula.security.filter.AuthenticationErrorFilter;
 import org.scoula.security.filter.JwtAuthenticationFilter;
 import org.scoula.security.filter.JwtUsernamePasswordAuthenticationFilter;
+import org.scoula.security.handler.CustomAccessDeniedHandler;
+import org.scoula.security.handler.CustomAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,20 +38,19 @@ import org.springframework.web.filter.CorsFilter;
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final AuthenticationErrorFilter authenticationErrorFilter;
-
     @Autowired
     private final JwtUsernamePasswordAuthenticationFilter jwtUsernamePasswordAuthenticationFilter;
 
-    // 문자셋 필터
-    public CharacterEncodingFilter encodingFilter() {
-        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-        encodingFilter.setEncoding("UTF-8");
-        encodingFilter.setForceEncoding(true);
+    private final UserDetailsService userDetailsService;
+    private final AuthenticationErrorFilter authenticationErrorFilter;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-        return encodingFilter;
+    private final CustomAccessDeniedHandler accessDeniedHandler;
+    private final CustomAuthenticationEntryPoint authenticationEntryPoint;
+
+    @Bean
+    public AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
     }
 
     @Bean
@@ -56,10 +58,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
     @Override
-    public AuthenticationManager authenticationManager() throws Exception {
-        return super.authenticationManager();
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 
     // cross origin 접근 허용
@@ -85,6 +88,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/assets/**", "/*", "/api/member/**");
     }
 
+    // 문자셋 필터
+    public CharacterEncodingFilter encodingFilter() {
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        encodingFilter.setEncoding("UTF-8");
+        encodingFilter.setForceEncoding(true);
+
+        return encodingFilter;
+    }
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // 한글 인코딩 필터 설정
@@ -96,6 +108,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 로그인 인증 필터
                 .addFilterBefore(jwtUsernamePasswordAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
+        // 예외 처리
+        http
+                .exceptionHandling()
+                .authenticationEntryPoint(authenticationEntryPoint)
+                .accessDeniedHandler(accessDeniedHandler);
+
+        http
+                .authorizeRequests()
+                        .antMatchers(HttpMethod.OPTIONS).permitAll()
+                        .antMatchers("/api/security/all").permitAll()
+                        .antMatchers("/api/security/member").access("hasRole('ROLE_MEMBER')")
+                        .antMatchers("/api/security/admin").access("hasRole('ROLE_ADMIN')")
+                        .anyRequest().authenticated();
+
         // 기본 http 인증, CSRF, formLogin 비활성화
         http.httpBasic().disable()
                 .csrf().disable()
@@ -103,10 +129,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
 }
